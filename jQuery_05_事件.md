@@ -51,7 +51,56 @@ $('#myElement').off('click');
 $('#myElement').off();
 ```
 
-## 4. 實際範例：表單提交事件
+## 4. 透過Jquery觸發事件
+`.trigger()` 方法用來執行匹配元素上附加的所有處理器和行為，對應給定的事件類型。用。
+
+基本語法長這樣：
+
+```javascript
+$(selector).trigger(eventType, [parameters])
+```
+
+- `selector`：選擇器，用來找到要觸發事件的元素。
+- `eventType`：這是一個表示要觸發的事件類型的字串。可以是標準的 DOM 事件（像是 'click', 'submit' 等）或是自定義事件。
+- `parameters`：(選擇性) 一組參數陣列，會傳遞給事件處理函式。
+
+### 範例 1：觸發點擊事件
+
+假設你有一個按鈕，ID 為 `myButton`，你想要以程式化的方式在這個按鈕上觸發點擊事件：
+
+```html
+<button id="myButton">點我！</button>
+```
+
+```javascript
+$('#myButton').click(function() {
+    alert('按鈕被點擊了！');
+});
+
+// 後來在你的代碼中，你可以這樣觸發點擊事件：
+$('#myButton').trigger('click');
+```
+
+### 範例 2：帶參數觸發自定義事件
+
+首先，你為你的自定義事件 `myEvent` 綁定一個事件處理器：
+
+```javascript
+$(document).on('myEvent', function(event, param1, param2) {
+    console.log(`事件被觸發，參數：${param1}, ${param2}`);
+});
+```
+
+然後，你可以帶著參數這樣觸發 `myEvent`：
+
+```javascript
+$(document).trigger('myEvent', ['Hello', 'world']);
+```
+
+輸出：`事件被觸發，參數：Hello, world`。
+
+
+## 5. 實際範例：表單提交事件
 
 ```javascript
 $('#myForm').submit(function(event) {
@@ -260,7 +309,3 @@ $(document).ready(function() {
 
 
 
-
-# 動畫
-
-# AJAX
